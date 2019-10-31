@@ -138,7 +138,7 @@ $(function () {
 
     // 裏返し用画像の情報
     let turnOverImg = new Image();
-    turnOverImg.src = "./img/turnOver.png";
+    turnOverImg.src = "./img/turnover.png";
 
 
     /**
@@ -167,7 +167,6 @@ $(function () {
         for (let k = 0; k < baseShapes[currentPage].length; k++) {
            
             if (k === selectShapeIdxs[currentPage]) {
-
 
                 // 円の画像
                 ctx.drawImage(circleImg, baseShapes[currentPage][k]['circle'][0]- circleRadius, baseShapes[currentPage][k]['circle'][1]- circleRadius, circleRadius * 2, circleRadius * 2);
