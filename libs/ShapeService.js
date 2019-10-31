@@ -417,35 +417,35 @@ const ShapeService = function () {
       shape['circle'] = [shape['matrix'][0][0] - 30, shape['matrix'][0][1] - 10];
       shape['square'] = [shape['matrix'][1][0] - 30, shape['matrix'][1][1] - 5];
     } else if (shape['shapeType'] == 'rectangle') {
-      shape['circle'] = [shape['matrix'][0][0] -25, shape['matrix'][0][1] -10];
+      shape['circle'] = [shape['matrix'][0][0] - 25, shape['matrix'][0][1] + 10];
       shape['square'] = [shape['matrix'][1][0] - 25, shape['matrix'][1][1] - 5];
     } else if (shape['shapeType'] == 'square') {
-      shape['circle'] = [shape['matrix'][0][0] - 25, shape['matrix'][0][1] -10];
+      shape['circle'] = [shape['matrix'][0][0] - 25, shape['matrix'][0][1] + 10];
       shape['square'] = [shape['matrix'][1][0] - 25, shape['matrix'][1][1] - 5];
     } else if (shape['shapeType'] == 'miniSquare') {
-      shape['circle'] = [shape['matrix'][0][0] - 25, shape['matrix'][0][1] -10];
+      shape['circle'] = [shape['matrix'][0][0] - 25, shape['matrix'][0][1] + 10];
       shape['square'] = [shape['matrix'][1][0] - 25, shape['matrix'][1][1] - 5];
     }
 
-    // // 重心と重心よりy方向にwindowの高さ分上にある点と辺の交点を求める
-    // let centerUpperPoint = [shape['center'][0], shape['center'][1] - $(window).height()];
-    // for (let i = 0; i < matrixLength; i++) {
-    //   let nextIdx = i + 1;
-    //   if (i === matrixLength - 1) {
-    //     // 最終頂点は始点と結ぶ線分にする
-    //     nextIdx = 0;
-    //   }
-    //   let crossPoint = this.getIntersectPoint(shape['center'], centerUpperPoint, shape['matrix'][i], shape['matrix'][nextIdx]);
-    //   if (crossPoint !== null) {
-    //     shape['crossPoint'] = crossPoint;
-    //     let lineLength = Math.abs(crossPoint[1] - shape['center'][1]) * 2;
-    //     if (lineLength < 50) {
-    //       lineLength = 100;
-    //     }
-    //     shape['circle'] = [shape['center'][0], (shape['center'][1] - lineLength)];
-    //     break;
-    //   }
-    // }
+    // 重心と重心よりy方向にwindowの高さ分上にある点と辺の交点を求める
+    let centerUpperPoint = [shape['center'][0], shape['center'][1] - $(window).height()];
+    for (let i = 0; i < matrixLength; i++) {
+      let nextIdx = i + 1;
+      if (i === matrixLength - 1) {
+        // 最終頂点は始点と結ぶ線分にする
+        nextIdx = 0;
+      }
+      let crossPoint = this.getIntersectPoint(shape['center'], centerUpperPoint, shape['matrix'][i], shape['matrix'][nextIdx]);
+      if (crossPoint !== null) {
+        shape['crossPoint'] = crossPoint;
+        let lineLength = Math.abs(crossPoint[1] - shape['center'][1]) * 2;
+        if (lineLength < 50) {
+          lineLength = 100;
+        }
+        shape['circle'] = [shape['center'][0], (shape['center'][1] - lineLength)];
+        break;
+      }
+    }
   };
 
   /**
@@ -1055,10 +1055,11 @@ const ShapeService = function () {
         dx = shapes[nearestShapeIdx]['matrix'][nearestSideP][0] - shapes[targetShapeIdx]['matrix'][targetSidePnext][0];
         dy = shapes[nearestShapeIdx]['matrix'][nearestSideP][1] - shapes[targetShapeIdx]['matrix'][targetSidePnext][1];
       }
+
       this.moveShape(shapes[targetShapeIdx], dx, dy);
     }
-  };
 
+  };
 
   ShapeService.prototype.flipAboutYAxis = function (shape) {
     let flipResult = [];
