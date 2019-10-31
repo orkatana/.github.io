@@ -138,7 +138,7 @@ $(function () {
 
     // 裏返し用画像の情報
     let turnOverImg = new Image();
-    turnOverImg.src = "./img/turnOver.png";
+    turnOverImg.src = "./img/turnover.png";
 
 
     /**
