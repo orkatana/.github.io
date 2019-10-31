@@ -168,7 +168,6 @@ $(function () {
            
             if (k === selectShapeIdxs[currentPage]) {
 
-
                 // 円の画像
                 ctx.drawImage(circleImg, baseShapes[currentPage][k]['circle'][0]- circleRadius, baseShapes[currentPage][k]['circle'][1]- circleRadius, circleRadius * 2, circleRadius * 2);
 
