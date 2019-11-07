@@ -41,14 +41,6 @@ body {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.22);
 }
 
-#stage_2 {
-    position: relative;
-    width: 1278px;
-    height: 958px;
-    border: 1px solid rgba(0, 0, 0, 0.22);
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.22);
-}
-
 #Canvas {
     position: absolute;
     width: 100%;

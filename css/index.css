@@ -1,11 +1,8 @@
 @charset "UTF-8";
 
-#appCanvas {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-}
-
+/* ------------------------------------------------------------
+共通
+---------------------------------------------------------------*/
 #content {
     position: absolute;
     width: 100%;
@@ -19,44 +16,246 @@
     height: 100%;
 }
 
-.question {
-    position: absolute;
-    top: 6%;
-    left: 3%;
-    width: 92%;
-    height: auto;
-}
-
 .pageImg {
     position: absolute;
     right: 8%;
-    bottom: 3%;
-    width: 9%;
+    bottom: 4%;
+    width: 10%;
     height: auto;
 }
 
 .arrowBtn {
     position: absolute;
-    bottom: 3%;
-    width: 3.5%;
+    bottom: 4%;
+    /* JSで設定
+    width: 4%;
     height: auto;
-    z-index: 2144480000;
-}
-.arrowBtn.next {
-    right: 4%;
-}
-.arrowBtn.before {
-    right: 18%;
-}
-
-.btn {
-    position: absolute;
+     */
     border: none;
     z-index: 2144480000;
 }
-.btn:focus {
+#nextPage.arrowBtn {
+    right: 2%;
+    background: center center / auto 100% no-repeat url("../img/allow_right.png");
+}
+#beforePage.arrowBtn {
+    right: 20%;
+    background: center center / auto 100% no-repeat url("../img/allow_left.png");
+}
+
+.restart {
+    position: absolute;
+    right: 2%;
+    bottom: 15%;
+    /* JSで設定
+    width: 18%;
+    height: auto;
+     */
+    border: none;
+    background: center center / auto 100% no-repeat url("../img/redo.png");
+    z-index: 2144480000;
+}
+.restart:focus {
     outline: none;
 }
-.btn.restart {
-    background: center center / auto 98% no-repeat url("../img/redo.png");
+
+/* ------------------------------------------------------------
+ページ1
+---------------------------------------------------------------*/
+#appCanvas {
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
+
+.page1table {
+    position: absolute;
+    left: 15%;
+    bottom: 8%;
+    width: 50%;
+    height: auto;
+}
+
+/* ------------------------------------------------------------
+ページ2
+---------------------------------------------------------------*/
+.page2graph {
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    top: 20%;
+    left: 31%;
+    width: 30%;
+    height: 44%;
+    border: solid 1px #7ECEF4;
+}
+
+.verticalLine {
+    position: absolute;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background-color: #7ECEF4;
+    z-index: 90;
+}
+#vl_1 {
+    left: calc(100% / 9);
+}
+#vl_2 {
+    left: calc(100% / 9 * 2);
+}
+#vl_3 {
+    left: calc(100% / 9 * 3);
+}
+#vl_4 {
+    left: calc(100% / 9 * 4);
+}
+#vl_5 {
+    left: calc(100% / 9 * 5);
+}
+#vl_6 {
+    left: calc(100% / 9 * 6);
+}
+#vl_7 {
+    left: calc(100% / 9 * 7);
+}
+#vl_8 {
+    left: calc(100% / 9 * 8);
+}
+
+.horizontalLine {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #7ECEF4;
+    z-index: 90;
+}
+#hl_1 {
+    top: calc(100% / 10);
+}
+#hl_2 {
+    top: calc(100% / 10 * 2);
+}
+#hl_3 {
+    top: calc(100% / 10 * 3);
+}
+#hl_4 {
+    top: calc(100% / 10 * 4);
+}
+#hl_5 {
+    top: calc(100% / 10 * 5);
+    height: 2px;
+}
+#hl_6 {
+    top: calc(100% / 10 * 6);
+}
+#hl_7 {
+    top: calc(100% / 10 * 7);
+}
+#hl_8 {
+    top: calc(100% / 10 * 8);
+}
+#hl_9 {
+    top: calc(100% / 10 * 9);
+}
+
+.slider {
+    position: relative;
+    width: calc(100% / 9);
+    height: 100%;
+    border: none !important;
+    border-radius: 0;
+    background: none;
+    box-sizing: border-box;
+    z-index: 99;
+}
+
+.slider-back {
+    background: rgba(126, 206, 244, 0.6);
+    border-radius: 0;
+    z-index: 50 !important;
+    box-sizing: border-box;
+}
+
+.slider .ui-slider-handle {
+    width: 100%;
+    height: 25px;
+    left: 0;
+    background: none;
+    border: none;
+    z-index: 99;
+}
+.slider .ui-slider-handle:focus {
+    outline: 0;
+    border: none;
+}
+
+.page2graphLabels {
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    bottom: 16.5%;
+    left: 31%;
+    width: 30%;
+    height: 18%;
+    box-sizing: border-box;
+}
+.page2graphLabel {
+    position: relative;
+    width: 15.5%;
+    height: 100%;
+    margin-right: calc(21% / 3);
+    border: solid 1px #7ECEF4;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+.page2graphLabel:first-child {
+    margin-left: 8.5%;
+}
+.page2graphLabel:last-child {
+    margin-right: 8.5%;
+}
+
+.graphTitle {
+    position: absolute;
+    top: 19%;
+    left: 46%;
+    width: 22%;
+    height: auto;
+    -ms-transform: translate(-50%, -100%);
+    transform: translate(-50%, -100%);
+}
+
+.people10 {
+    position: absolute;
+    top: 22.5%;
+    left: 31.5%;
+    width: 6%;
+    height: auto;
+    -ms-transform: translate(-100%, -100%);
+    transform: translate(-100%, -100%);
+}
+
+.people5 {
+    position: absolute;
+    top: 42%;
+    left: 30.5%;
+    width: 2.5%;
+    height: auto;
+    -ms-transform: translate(-100%, -50%);
+    transform: translate(-100%, -50%);
+}
+
+.people0 {
+    position: absolute;
+    top: 64%;
+    left: 30.5%;
+    width: 2.5%;
+    height: auto;
+    -ms-transform: translate(-100%, -50%);
+    transform: translate(-100%, -50%);
+}
+
