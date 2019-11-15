@@ -1,7 +1,7 @@
 const ShapeService = function () {
     // ベース図形
     this.baseShapeLineColor = 'rgba(0, 0, 0, 1)';   // 線の色
-    this.baseShapeLineWidth = 1;   // 線の太さ
+    this.baseShapeLineWidth = 3;   // 線の太さ
 
     // 図形移動時の補正範囲
     this.correctionDistance = 30;
@@ -31,36 +31,24 @@ const ShapeService = function () {
      */
     ShapeService.prototype.setBaseShapes = function (canvasPosition) {
         let baseShape = [];
-        //一つ目の四角形、き
+        //一つ目の四角形、い
         // 座標を設定
           baseShape[0] = {
-            'turnOverFlag': false,
-            'shapeType': 0,
             'center': [0, 0],       // 重心
             'crossPoint': [0, 0],   // 重心からの垂線と辺の交点
-            'crossPoint2': [0, 0],   // 重心からの垂線と辺の交点
             'circle': [0, 0],       // 円（回転アイコン）の中心
             'initCircle': [0, 0],       // 初期の回転アイコンの中心
             'rotate': 0,   // 回転角度
-            'square': [0, 0],       // 円（回転アイコン）の中心
-            'initSquare': [0, 0],       // 初期の回転アイコンの中心
+            'color': ['rgba(250,215,212,1)'], //図形の色
+            'mark_img':'./img/b.png',
             'matrix': [
-                [canvasPosition.width * 0.489, canvasPosition.height * 0.180],
-                [canvasPosition.width * 0.368, canvasPosition.height * 0.515],
-                [canvasPosition.width * 0.398, canvasPosition.height * 0.525],
-                [canvasPosition.width * 0.438, canvasPosition.height * 0.545],
-                [canvasPosition.width * 0.468, canvasPosition.height * 0.565],
-                [canvasPosition.width * 0.507, canvasPosition.height * 0.600],
-                [canvasPosition.width * 0.545, canvasPosition.height * 0.545],
-                [canvasPosition.width * 0.585, canvasPosition.height * 0.500],
-                [canvasPosition.width * 0.615, canvasPosition.height * 0.482],
-                [canvasPosition.width * 0.631, canvasPosition.height * 0.446],
+                [canvasPosition.width * 0.535, canvasPosition.height * 0.24],
+                [canvasPosition.width * 0.602, canvasPosition.height * 0.41],
+                [canvasPosition.width * 0.840, canvasPosition.height * 0.381],
             ],     // 各頂点の座標
             'origin': {     // 回転時の座標計算用に元座標を保存
                 'crossPoint': [],
-                'crossPoint2': [],
                 'circle': [],
-                'square': [],
                 'matrix': [],
             },
             'line': 0,
@@ -70,40 +58,26 @@ const ShapeService = function () {
         this.calcCenterOfGravity(baseShape[0]);     // 重心、重心からの垂線と辺の交点、円の中心を設定
         this.setOriginShapeData(baseShape[0]);      // 元座標情報を設定
         baseShape[0]['initCircle'] = [baseShape[0]['circle'][0], baseShape[0]['circle'][1]];  // 初期の回転アイコンの中心
-        baseShape[0]['initSquare'] = [baseShape[0]['square'][0], baseShape[0]['square'][1]];  // 初期の回転アイコンの中心
 
-        //右下
+        
+        // 二つ目の四角形、う
         // 座標を設定
         baseShape[1] = {
-            'turnOverFlag': false,
-            'shapeType': 1,
             'center': [0, 0],       // 重心
             'crossPoint': [0, 0],   // 重心からの垂線と辺の交点
-            'crossPoint2': [0, 0],   // 重心からの垂線と辺の交点
             'circle': [0, 0],       // 円（回転アイコン）の中心
             'initCircle': [0, 0],       // 初期の回転アイコンの中心
             'rotate': 0,   // 回転角度
-            'square': [0, 0],       // 円（回転アイコン）の中心
-            'initSquare': [0, 0],       // 初期の回転アイコンの中心
+            'color': ['rgba(250,215,212,1)'], //図形の色
+            'mark_img':'./img/c.png',
             'matrix': [
-                [canvasPosition.width * 0.29, canvasPosition.height * 0.727],
-                [canvasPosition.width * 0.29, canvasPosition.height * 0.727],
-                [canvasPosition.width * 0.546, canvasPosition.height * 0.727],
-                [canvasPosition.width * 0.556, canvasPosition.height * 0.700],
-                [canvasPosition.width * 0.558, canvasPosition.height * 0.696],
-                [canvasPosition.width * 0.55, canvasPosition.height * 0.67],
-                [canvasPosition.width * 0.53, canvasPosition.height * 0.63],
-                [canvasPosition.width * 0.5, canvasPosition.height * 0.595],
-                [canvasPosition.width * 0.45, canvasPosition.height * 0.553],
-                [canvasPosition.width * 0.4, canvasPosition.height * 0.53],
-                [canvasPosition.width * 0.368, canvasPosition.height * 0.512],
-
+                [canvasPosition.width * 0.653, canvasPosition.height * 0.442],
+                [canvasPosition.width * 0.745, canvasPosition.height * 0.554],
+                [canvasPosition.width * 0.93, canvasPosition.height * 0.4335],
             ],     // 各頂点の座標
             'origin': {     // 回転時の座標計算用に元座標を保存
                 'crossPoint': [],
-                'crossPoint2': [],
                 'circle': [],
-                'square': [],
                 'matrix': [],
             },
             'line': 0,
@@ -113,39 +87,25 @@ const ShapeService = function () {
         this.calcCenterOfGravity(baseShape[1]);     // 重心、重心からの垂線と辺の交点、円の中心を設定
         this.setOriginShapeData(baseShape[1]);      // 元座標情報を設定
         baseShape[1]['initCircle'] = [baseShape[1]['circle'][0], baseShape[1]['circle'][1]];  // 初期の回転アイコンの中心
-        baseShape[1]['initSquare'] = [baseShape[1]['square'][0], baseShape[1]['square'][1]];  // 初期の回転アイコンの中心
 
-        
-        // 右下
+                // 三つ目の四角形、え
         // 座標を設定
         baseShape[2] = {
-            'turnOverFlag': false,
-            'shapeType': 2,
             'center': [0, 0],       // 重心
             'crossPoint': [0, 0],   // 重心からの垂線と辺の交点
-            'crossPoint2': [0, 0],   // 重心からの垂線と辺の交点
             'circle': [0, 0],       // 円（回転アイコン）の中心
             'initCircle': [0, 0],       // 初期の回転アイコンの中心
             'rotate': 0,   // 回転角度
-            'square': [0, 0],       // 円（回転アイコン）の中心
-            'initSquare': [0, 0],       // 初期の回転アイコンの中心
+            'color': ['rgba(250,215,212,1)'], //図形の色
+            'mark_img':'./img/d.png',
             'matrix': [
-                [canvasPosition.width * 0.548, canvasPosition.height * 0.725],
-                [canvasPosition.width * 0.78, canvasPosition.height * 0.725],
-                [canvasPosition.width * 0.63, canvasPosition.height * 0.446],
-                [canvasPosition.width * 0.616, canvasPosition.height * 0.483],
-                [canvasPosition.width * 0.585, canvasPosition.height * 0.504],
-                [canvasPosition.width * 0.55, canvasPosition.height * 0.54],
-                [canvasPosition.width * 0.52, canvasPosition.height * 0.578],
-                [canvasPosition.width * 0.506, canvasPosition.height * 0.598],
-                [canvasPosition.width * 0.54, canvasPosition.height * 0.648],
-                [canvasPosition.width * 0.558, canvasPosition.height * 0.693],
+                [canvasPosition.width * 0.535, canvasPosition.height * 0.636],
+                [canvasPosition.width * 0.652, canvasPosition.height * 0.74],
+                [canvasPosition.width * 0.778, canvasPosition.height * 0.59],
             ],     // 各頂点の座標
             'origin': {     // 回転時の座標計算用に元座標を保存
                 'crossPoint': [],
-                'crossPoint2': [],
                 'circle': [],
-                'square': [],
                 'matrix': [],
             },
             'line': 0,
@@ -155,7 +115,34 @@ const ShapeService = function () {
         this.calcCenterOfGravity(baseShape[2]);     // 重心、重心からの垂線と辺の交点、円の中心を設定
         this.setOriginShapeData(baseShape[2]);      // 元座標情報を設定
         baseShape[2]['initCircle'] = [baseShape[2]['circle'][0], baseShape[2]['circle'][1]];  // 初期の回転アイコンの中心
-        baseShape[2]['initSquare'] = [baseShape[2]['square'][0], baseShape[2]['square'][1]];  // 初期の回転アイコンの中心
+
+                //四つ目の四角形、お
+        // 座標を設定
+        baseShape[3] = {
+            'center': [0, 0],       // 重心
+            'crossPoint': [0, 0],   // 重心からの垂線と辺の交点
+            'circle': [0, 0],       // 円（回転アイコン）の中心
+            'initCircle': [0, 0],       // 初期の回転アイコンの中心
+            'rotate': 0,   // 回転角度
+            'color': ['rgba(250,215,212,1)'], //図形の色
+            'mark_img':'./img/e.png',
+            'matrix': [
+                [canvasPosition.width * 0.535, canvasPosition.height * 0.516],
+                [canvasPosition.width * 0.587, canvasPosition.height * 0.581],
+                [canvasPosition.width * 0.697, canvasPosition.height * 0.511],
+            ],     // 各頂点の座標
+            'origin': {     // 回転時の座標計算用に元座標を保存
+                'crossPoint': [],
+                'circle': [],
+                'matrix': [],
+            },
+            'line': 0,
+        };
+
+        // 重心などを計算
+        this.calcCenterOfGravity(baseShape[3]);     // 重心、重心からの垂線と辺の交点、円の中心を設定
+        this.setOriginShapeData(baseShape[3]);      // 元座標情報を設定
+        baseShape[3]['initCircle'] = [baseShape[3]['circle'][0], baseShape[3]['circle'][1]];  // 初期の回転アイコンの中心
 
         return baseShape;
 
@@ -186,16 +173,9 @@ const ShapeService = function () {
         shape['center'][0] = newCenterXTotal / matrixLength;
         shape['center'][1] = newCenterYTotal / matrixLength;
 
-        if (shape['shapeType'] == 0) {
-            shape['circle'] = [shape['matrix'][0][0] - 30, shape['matrix'][0][1] - 10];
-            shape['square'] = [shape['matrix'][1][0] - 30, shape['matrix'][1][1] - 5];
-          } else if (shape['shapeType'] == 1) {
-            shape['circle'] = [shape['matrix'][0][0] -25, shape['matrix'][0][1] -10];
-            shape['square'] = [shape['matrix'][2][0] - 25, shape['matrix'][2][1] + 25];
-          } else if (shape['shapeType'] == 2) {
-            shape['circle'] = [shape['matrix'][0][0] - 25, shape['matrix'][0][1] -10];
-            shape['square'] = [shape['matrix'][1][0] - 25, shape['matrix'][1][1] + 25];
-          }
+        shape['circle'] = [shape['matrix'][0][0] - 30, shape['matrix'][0][1] - 10];
+        shape['square'] = [shape['matrix'][1][0] - 30, shape['matrix'][1][1] - 5];
+
     };
 
 
@@ -251,10 +231,6 @@ const ShapeService = function () {
         shape['origin'] = {};
         shape['origin']['crossPoint'] = [shape['crossPoint'][0], shape['crossPoint'][1]];
         shape['origin']['circle'] = [shape['circle'][0], shape['circle'][1]];
-
-        shape['origin']['crossPoint2'] = [shape['crossPoint2'][0], shape['crossPoint2'][1]];
-        shape['origin']['square'] = [shape['square'][0], shape['square'][1]];
-
         shape['origin']['matrix'] = [];
         for (let i = 0; i < shape['matrix'].length; i++) {
             shape['origin']['matrix'][i] = [shape['matrix'][i][0], shape['matrix'][i][1]];
@@ -269,7 +245,6 @@ const ShapeService = function () {
     ShapeService.prototype.recalculateBaseShape = function (scale, baseShape) {
         for (let k = 0; k < baseShape.length; k++) {
             baseShape[k]['initCircle'] = [baseShape[k]['initCircle'][0] * scale, baseShape[k]['initCircle'][1] * scale];
-            baseShape[k]['initSquare'] = [baseShape[k]['initSquare'][0] * scale, baseShape[k]['initSquare'][1] * scale];
             for (let i = 0; i < baseShape[k]['matrix'].length; i++) {
                 baseShape[k]['matrix'][i] = [baseShape[k]['matrix'][i][0] * scale, baseShape[k]['matrix'][i][1] * scale];
             }
@@ -293,11 +268,6 @@ const ShapeService = function () {
             shapes[k]['crossPoint'] = [shapes[k]['crossPoint'][0] * scale, shapes[k]['crossPoint'][1] * scale];
             shapes[k]['circle'] = [shapes[k]['circle'][0] * scale, shapes[k]['circle'][1] * scale];
             shapes[k]['initCircle'] = [shapes[k]['initCircle'][0] * scale, shapes[k]['initCircle'][1] * scale];
-
-        shapes[k]['crossPoint2'] = [shapes[k]['crossPoint2'][0] * scale, shapes[k]['crossPoint2'][1] * scale];
-        shapes[k]['square'] = [shapes[k]['square'][0] * scale, shapes[k]['square'][1] * scale];
-        shapes[k]['initSquare'] = [shapes[k]['initSquare'][0] * scale, shapes[k]['initSquare'][1] * scale];
-
             for (let i = 0; i < shapes[k]['matrix'].length; i++) {
                 shapes[k]['matrix'][i][0] = shapes[k]['matrix'][i][0] * scale;
                 shapes[k]['matrix'][i][1] = shapes[k]['matrix'][i][1] * scale;
@@ -432,17 +402,6 @@ const ShapeService = function () {
         // 移動後の円画像の初期座標計算
         shape['initCircle'][0] = shape['initCircle'][0] + dx;
         shape['initCircle'][1] = shape['initCircle'][1] + dy;
-
-        // 移動後の交点の座標計算
-        shape['crossPoint2'][0] = shape['crossPoint2'][0] + dx;
-        shape['crossPoint2'][1] = shape['crossPoint2'][1] + dy;
-        // 移動後の円画像の座標計算
-        shape['square'][0] = shape['square'][0] + dx;
-        shape['square'][1] = shape['square'][1] + dy;
-        // 移動後の円画像の初期座標計算
-        shape['initSquare'][0] = shape['initSquare'][0] + dx;
-        shape['initSquare'][1] = shape['initSquare'][1] + dy; 
-
         // 移動後の各頂点の座標計算
         for (let i = 0; i < shape['matrix'].length; i++) {
             shape['matrix'][i][0] = shape['matrix'][i][0] + dx;
@@ -488,13 +447,6 @@ const ShapeService = function () {
         // 重心からの垂線と辺の交点の回転後座標を計算
         shape['crossPoint'][0] = cos * (shape['origin']['crossPoint'][0] - centerPoint[0]) - sin * (shape['origin']['crossPoint'][1] - centerPoint[1]) + centerPoint[0];
         shape['crossPoint'][1] = sin * (shape['origin']['crossPoint'][0] - centerPoint[0]) + cos * (shape['origin']['crossPoint'][1] - centerPoint[1]) + centerPoint[1];
- 
-        // 円の中心の回転後座標を計算
-        shape['square'][0] = cos * (shape['origin']['square'][0] - centerPoint[0]) - sin * (shape['origin']['square'][1] - centerPoint[1]) + centerPoint[0];
-        shape['square'][1] = sin * (shape['origin']['square'][0] - centerPoint[0]) + cos * (shape['origin']['square'][1] - centerPoint[1]) + centerPoint[1];
-        // 重心からの垂線と辺の交点の回転後座標を計算
-        shape['crossPoint2'][0] = cos * (shape['origin']['crossPoint2'][0] - centerPoint[0]) - sin * (shape['origin']['crossPoint2'][1] - centerPoint[1]) + centerPoint[0];
-        shape['crossPoint2'][1] = sin * (shape['origin']['crossPoint2'][0] - centerPoint[0]) + cos * (shape['origin']['crossPoint2'][1] - centerPoint[1]) + centerPoint[1];
 
         // 各頂点の回転後座標を計算
         for (let i = 0; i < shape['matrix'].length; i++) {
@@ -507,41 +459,41 @@ const ShapeService = function () {
 
     };
 
-    ShapeService.prototype.flipAboutYAxis = function (shape) {
-      let flipResult = [];
-      let invertY = [[-1,0,0],[0,1,0],[0,0,1]];
+    // ShapeService.prototype.flipAboutYAxis = function (shape) {
+    //   let flipResult = [];
+    //   let invertY = [[-1,0,0],[0,1,0],[0,0,1]];
 
 
-      for(let i = 0; i < shape['matrix'].length; i++){
-        let flipedX = shape['matrix'][i][0] * invertY[0][0] + shape['matrix'][i][1] * invertY[0][1] + 1 * invertY[0][2] + shape['center'][0] * 2;
-        let flipedY = shape['matrix'][i][0] * invertY[1][0] + shape['matrix'][i][1] * invertY[1][1] + 1 * invertY[1][2];
-        flipResult[i] = [flipedX,flipedY];
-      }
+    //   for(let i = 0; i < shape['matrix'].length; i++){
+    //     let flipedX = shape['matrix'][i][0] * invertY[0][0] + shape['matrix'][i][1] * invertY[0][1] + 1 * invertY[0][2] + shape['center'][0] * 2;
+    //     let flipedY = shape['matrix'][i][0] * invertY[1][0] + shape['matrix'][i][1] * invertY[1][1] + 1 * invertY[1][2];
+    //     flipResult[i] = [flipedX,flipedY];
+    //   }
 
-      for(let i = 0; i < flipResult.length; i++){
-        shape['matrix'][i] = flipResult[i];
-      }
+    //   for(let i = 0; i < flipResult.length; i++){
+    //     shape['matrix'][i] = flipResult[i];
+    //   }
 
-      let flipedCircleX = shape['circle'][0] * invertY[0][0] + shape['circle'][1] * invertY[0][1] + 1 * invertY[0][2] + shape['center'][0] * 2;
-      let flipedCircleY = shape['circle'][0] * invertY[1][0] + shape['circle'][1] * invertY[1][1] + 1 * invertY[1][2];
+    //   let flipedCircleX = shape['circle'][0] * invertY[0][0] + shape['circle'][1] * invertY[0][1] + 1 * invertY[0][2] + shape['center'][0] * 2;
+    //   let flipedCircleY = shape['circle'][0] * invertY[1][0] + shape['circle'][1] * invertY[1][1] + 1 * invertY[1][2];
 
-      let flipedSquareX = shape['square'][0] * invertY[0][0] + shape['square'][1] * invertY[0][1] + 1 * invertY[0][2] + shape['center'][0] * 2;
-      let flipedSquareY = shape['square'][0] * invertY[1][0] + shape['square'][1] * invertY[1][1] + 1 * invertY[1][2];
+    //   let flipedSquareX = shape['square'][0] * invertY[0][0] + shape['square'][1] * invertY[0][1] + 1 * invertY[0][2] + shape['center'][0] * 2;
+    //   let flipedSquareY = shape['square'][0] * invertY[1][0] + shape['square'][1] * invertY[1][1] + 1 * invertY[1][2];
 
-      shape['circle'][0] = flipedCircleX;
-      shape['circle'][1] = flipedCircleY;
+    //   shape['circle'][0] = flipedCircleX;
+    //   shape['circle'][1] = flipedCircleY;
 
-      shape['square'][0] = flipedSquareX;
-      shape['square'][1] = flipedSquareY;
+    //   shape['square'][0] = flipedSquareX;
+    //   shape['square'][1] = flipedSquareY;
 
-      shape['initCircle'][0] =  shape['initCircle'][0] * invertY[0][0] + shape['initCircle'][1] * invertY[0][1] + 1 * invertY[0][2] + shape['center'][0] * 2;
-      shape['initCircle'][1] =  shape['initCircle'][0] * invertY[1][0] + shape['initCircle'][1] * invertY[1][1] + 1 * invertY[1][2];
+    //   shape['initCircle'][0] =  shape['initCircle'][0] * invertY[0][0] + shape['initCircle'][1] * invertY[0][1] + 1 * invertY[0][2] + shape['center'][0] * 2;
+    //   shape['initCircle'][1] =  shape['initCircle'][0] * invertY[1][0] + shape['initCircle'][1] * invertY[1][1] + 1 * invertY[1][2];
 
-      shape['rotate'] = 360 - shape['rotate'];
+    //   shape['rotate'] = 360 - shape['rotate'];
 
-      // 元座標情報を設定→これやらないと回転アイコン押下時に元に戻ったりする
-      this.setOriginShapeData(shape);
-    }
+    //   // 元座標情報を設定→これやらないと回転アイコン押下時に元に戻ったりする
+    //   this.setOriginShapeData(shape);
+    // }
 
     /**
      * 指定図形を重心を中心に回転させる
@@ -770,5 +722,4 @@ const ShapeService = function () {
 
         return result;
     };
-    
 }());
