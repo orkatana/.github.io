@@ -771,8 +771,4 @@ const ShapeService = function () {
         return result;
     };
     
-    ShapeService.prototype.imageANDshapeRotate = function(startPoint, endPoint,img,shape,){
-
-
-    }
 }());
