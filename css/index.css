@@ -73,7 +73,9 @@
 .arrowBtn.before {
     right: 18%;
 }
-
+.btn:focus {
+    outline: none;
+    }
 .btn {
     position: absolute;
     border: none;
