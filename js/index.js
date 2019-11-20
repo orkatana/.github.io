@@ -449,7 +449,7 @@ $(function () {
         // 選択した図形が手前に描画されるよう図形データの配列順番を調整し、最後尾の選択図形のインデックスを取得
         selectShapeIdxs[currentPage] = sps.resortShapesForSelect(selectIdx, baseShapes[currentPage]);
       } else {
-        selectShapeIdxs[currentPage] = null;  // 図形選択なし
+       // selectShapeIdxs[currentPage] = null;  // 図形選択なし
       }
     } else {
       // クリックではなくドラッグ後のマウスアップ（タッチ終了）の場合
