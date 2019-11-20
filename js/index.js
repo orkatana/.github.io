@@ -145,6 +145,10 @@ $(function () {
   let circleRadius = 20;  // 半径
   // 回転用円画像のイメージオブジェクト
 
+  // 裏返し用画像の情報
+  let turnOverImg = new Image();
+  turnOverImg.src = "./img/inv.png";
+
   let circleImg = new Image();
   circleImg.src = "./img/rotate.png";
 
@@ -300,6 +304,10 @@ $(function () {
           circleRadius * 2
         );
 
+
+                //反転用のボタン画像
+                ctx.drawImage(turnOverImg, baseShapes[currentPage][k]['square'][0] - circleRadius, baseShapes[currentPage][k]['square'][1] - circleRadius, circleRadius *2, circleRadius * 2);
+
       }
 
     }
@@ -337,6 +345,13 @@ $(function () {
     if (selectShapeIdxs[currentPage] !== null && sps.judgeInnerCirclePoint(downPoint, baseShapes[currentPage][selectShapeIdxs[currentPage]]['circle'], circleRadius)) {
       circleTouched = true;   // 回転用円画像タッチ開始
     }
+        //反転ボタンをタッチしているか判定
+        else if (selectShapeIdxs[currentPage] !== null && sps.judgeInnerCirclePoint(downPoint, baseShapes[currentPage][selectShapeIdxs[currentPage]]['square'], circleRadius)) {
+          turnOverTouched = true; // 図形の裏返し用画像のタッチかチェック
+          if (turnOverTouched) {
+              sps.flipAboutYAxis(baseShapes[currentPage][selectShapeIdxs[currentPage]]);
+          }
+      }
     else {
       // 複製図形をタッチしていないか
       targetShapeIdxs[currentPage] = sps.getSelectShapeIdx(downPoint, baseShapes[currentPage], currentPage);
